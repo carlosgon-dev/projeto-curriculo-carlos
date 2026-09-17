@@ -101,16 +101,19 @@ summary{
     transition: transform 0.2s ease; /*temporiza a rotação da seta*/
 }
 
+/* roda a seta quando abro o separador */
 details[open] > summary .seta {    
     transform: rotate(-90deg);
-}                                    /* roda a seta quando abro o separador */
+}                                    
 
-
+/* Organiza o conteudo dentro ca caixa de acordeão depois de aberta */
 .conteudo-secao {
     border-top: 1px solid #E5E7EB;
+    padding: 10px 28px 26px;
 
 }
 
+/* Tratamento do texto */
 .texto-corrido{
     font-size: 15px;
     color: #374151;
@@ -178,4 +181,8 @@ ul {
     flex-direction: row;
     justify-content: center;
     gap: 8px;
+}
+
+strong {
+    color: #2b6ca3;
 }
