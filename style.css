@@ -19,12 +19,12 @@ body {
 @media (max-width: 600px) {
     .foto_perfil {
         width: 56px;
-        height: 64px;
+        height: 56px;
     }
 }
 
 
-.head-container {
+header {
     display: flex;
     background-color: #DCEBF7;
     flex-direction: column;
@@ -34,8 +34,7 @@ body {
     padding: 36px 20px;
 }
 
-
-.head-container li {
+header li {
     background-color: #ffffff;
     color: #2b6ca3;
     padding: 6px 14px;
@@ -44,11 +43,131 @@ body {
     font-weight: 600;
 }
 
+/*==================== MAIN ======================= */
+
+/* configuração geral do mail */
+main{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;                       /* Faz criar o espaço entre as barras de acordeão */
+    padding-bottom: 10px;
+}
+
+
+/* Instrução de texto"Clica numa secção para expandir*/
+.dica-acordeoes{
+    font-size: 11.5px;
+    letter-spacing: 0.1em;          /* espaçamento entre letras */
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin-bottom: 10px;
+    margin-top: 30px;
+}
+
+/* Barras de acordeão */
+
+details{
+    border: 1px solid #E5E7EB;   /* borda cinza clara */
+    border-radius: 10px;
+    background: #ffffff;
+    overflow: hidden;~
+    
+    /* Pseudoclasse: que só aplica os estilos enquanto o rato está por cima do elemento */
+    &:hover {
+        border-color: purple;
+        background: #DCEBF7;
+    }
+}
+
+
+
+
+/* texto dentro da barra de acordeão */
+summary{
+    cursor: pointer;                /* muda o ícone do rato para aquela "mãozinha" quando passas por cima do elemento  */
+    padding: 20px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 15px;
+    color: #1f2937;
+}
+
+/* Seta */
+.seta {
+    color: #2b6ca3;
+    transform: rotate(90deg);        /*posiciona a seta com a ponta para baixo*/
+    transition: transform 0.2s ease; /*temporiza a rotação da seta*/
+}
+
+details[open] > summary .seta {    
+    transform: rotate(-90deg);
+}                                    /* roda a seta quando abro o separador */
+
+
+.conteudo-secao {
+    border-top: 1px solid #E5E7EB;
+
+}
+
+.texto-corrido{
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.75;
+    text-align: justify;
+}
+
+
+/*==================== FOOTER ======================= */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F7F8FA;
+    border-top: 1px solid #E5E7EB;
+    gap: 1px;
+    padding: 36px 20px;
+    font-size: 12px;
+
+}
+
+/* FOOTER - CONTACTOS */
+.container-contacto {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-style: normal
+}
+
+.item-contacto {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    img {
+        width: 1em;
+        height: 1em;
+    }
+}
+
+.container-redes-sociais {
+    display: flex;
+    gap: 16px;
+
+    img {
+        width: 1em;
+        height: 1em;
+    }
+}
+
+
+
 
 h1 {
     font-size: 3 rem;
 }
-
 
 ul {
     list-style: none;
