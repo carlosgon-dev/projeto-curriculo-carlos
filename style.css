@@ -72,7 +72,7 @@ details{
     border: 1px solid #E5E7EB;   /* borda cinza clara */
     border-radius: 10px;
     background: #ffffff;
-    overflow: hidden;~
+    overflow: hidden;
     
     /* Pseudoclasse: que só aplica os estilos enquanto o rato 
     está por cima do elemento E quando a barra está fechada */
