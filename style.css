@@ -186,6 +186,14 @@ details[open] > summary .seta {    transform: rotate(-90deg);}
     }
 }
 
+/* Grid para o separador certificações */
+.grid-certificacoes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+
 
 
 /* ================================ */
