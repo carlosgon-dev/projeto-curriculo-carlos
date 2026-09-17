@@ -1,0 +1,532 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Work Sans', system-ui, sans-serif; }
+    a { color: oklch(0.45 0.12 235); }
+    a:hover { color: oklch(0.35 0.12 235); }
+
+    details.row { border: 1px solid oklch(0.9 0.005 240); border-radius: 10px; background: #ffffff; overflow: hidden; }
+    details.row summary { list-style: none; cursor: pointer; padding: 20px 28px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 15px; color: #1f2937; }
+    details.row summary::-webkit-details-marker { display: none; }
+    details.row summary:hover { background: oklch(0.98 0.008 235); }
+    details.row .meta { display: flex; align-items: center; gap: 14px; }
+    details.row .count { font-size: 12px; font-weight: 500; color: #9ca3af; }
+    details.row .chev { color: oklch(0.55 0.12 235); transition: transform 0.18s ease; flex-shrink: 0; }
+    details.row[open] .chev { transform: rotate(180deg); }
+    details.row .content { padding: 4px 28px 26px; border-top: 1px solid oklch(0.93 0.005 240); }
+
+    details.job { border-top: 1px solid oklch(0.94 0.005 240); }
+    details.job:first-of-type { border-top: none; }
+    details.job > summary { list-style: none; cursor: pointer; padding: 18px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    details.job > summary::-webkit-details-marker { display: none; }
+    details.job > summary:hover .job-title { color: oklch(0.45 0.12 235); }
+    details.job .jchev { color: oklch(0.55 0.12 235); transition: transform 0.18s ease; flex-shrink: 0; }
+    details.job[open] .jchev { transform: rotate(180deg); }
+    details.job .job-body { padding: 0 0 22px 76px; }
+
+    .skill-card { position: relative; height: 150px; border-radius: 12px; border: 1px solid oklch(0.88 0.008 240); background: #ffffff; overflow: hidden; }
+    .skill-card .face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 14px; text-align: center; transition: opacity 0.22s ease, transform 0.22s ease; }
+    .skill-card .front { opacity: 1; transform: translateY(0); }
+    .skill-card .back { opacity: 0; transform: translateY(8px); background: oklch(0.95 0.02 235); gap: 6px; }
+    .skill-card:hover .front { opacity: 0; transform: translateY(-8px); }
+    .skill-card:hover .back { opacity: 1; transform: translateY(0); }
+    .skill-card:hover { border-color: oklch(0.55 0.12 235); }
+  </style>
+</helmet>
+
+<div style="width: 1200px; background: #ffffff; color: #1f2937;">
+
+  <!-- HEADER -->
+  <div style="padding: 56px 64px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; background: oklch(0.94 0.025 235);">
+
+    <div style="width: 140px; height: 140px; border-radius: 50%; background: oklch(0.99 0.005 235); border: 3px solid oklch(0.55 0.12 235); display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 700; color: oklch(0.45 0.12 235); flex-shrink: 0;">CG</div>
+
+    <div style="font-size: 32px; font-weight: 700; line-height: 1.15;">Carlos Miguel Pereira Gonçalves</div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
+      <span style="background: oklch(0.99 0.005 235); color: oklch(0.4 0.12 235); padding: 6px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 600;">Data Analyst Trainee</span>
+      <span style="background: oklch(0.99 0.005 235); color: oklch(0.4 0.12 235); padding: 6px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 600;">Business Intelligence</span>
+      <span style="background: oklch(0.99 0.005 235); color: oklch(0.4 0.12 235); padding: 6px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 600;">Qualidade</span>
+      <span style="background: oklch(0.99 0.005 235); color: oklch(0.4 0.12 235); padding: 6px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 600;">Gestão de Cliente e Projeto</span>
+      <span style="background: oklch(0.99 0.005 235); color: oklch(0.4 0.12 235); padding: 6px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 600;">Otimização de Processos</span>
+    </div>
+
+  </div>
+
+  <!-- BODY: GRID DE ACORDEÕES -->
+  <div style="padding: 40px 64px 56px; display: grid; grid-template-rows: auto auto auto auto auto auto; row-gap: 14px;">
+
+    <div style="font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #9ca3af; margin-bottom: 2px;">Clica numa secção para expandir</div>
+
+    <!-- LINHA 0 — SOBRE MIM -->
+    <details class="row" open>
+      <summary>
+        <span>Sobre mim</span>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="content">
+        <div style="font-size: 15px; color: #374151; line-height: 1.75; text-align: justify;">Engenheiro de formação com sólida experiência em ambientes industriais complexos e operações críticas, atualmente especializado em <span style="color: oklch(0.4 0.12 235); font-weight: 600;">Data Analytics & Business Intelligence (BI)</span>. Combino uma forte vertente analítica na transformação de dados complexos com competências avançadas em <span style="color: oklch(0.4 0.12 235); font-weight: 600;">SQL, Python</span> e arquiteturas modernas de <span style="color: oklch(0.4 0.12 235); font-weight: 600;">AI-Assisted Engineering</span>. Perfil resiliente e focado na resolução ágil de problemas operacionais através do desenvolvimento de ecossistemas de suporte à decisão interdepartamental.</div>
+      </div>
+    </details>
+
+    <!-- LINHA 1 — EXPERIÊNCIA PROFISSIONAL -->
+    <details class="row">
+      <summary>
+        <span>Experiência Profissional</span>
+        <span class="meta"><span class="count">4</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+      </summary>
+      <div class="content">
+        <div style="display: flex; flex-direction: column;">
+
+          <details class="job">
+            <summary>
+              <div style="display: flex; gap: 20px; align-items: center; min-width: 0; flex: 1;">
+                <div style="width: 56px; height: 56px; border-radius: 12px; background: oklch(0.95 0.02 235); border: 1px solid oklch(0.8 0.03 235); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: oklch(0.45 0.12 235); flex-shrink: 0;">XG</div>
+                <div style="min-width: 0;">
+                  <div class="job-title" style="font-size: 15px; font-weight: 600;">Analista de Dados & BI Trainee</div>
+                  <div style="font-size: 12.5px; margin-top: 2px;"><span style="color: oklch(0.45 0.12 235); font-weight: 500;">XPERTGO, Ponte de Lima</span> <span style="color: #9ca3af;">· Abr 2026 — Presente</span></div>
+                  <div style="font-size: 12.5px; color: #6b7280; margin-top: 4px;">Dashboards Power BI para OpEx e eficiência industrial; automação de SQL e DAX com apoio de IA generativa.</div>
+                </div>
+              </div>
+              <svg class="jchev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="job-body">
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Dashboards de BI em Power BI para monitorização cross-functional, focados em OpEx, eficiência de processos e KPIs interdepartamentais.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Modelagem de dados com lógicas de Drill-Down e Root Cause Analysis para diagnóstico de falhas operacionais.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Data mining e consulta de bases de dados SQL Server via DBeaver e VS Code.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">AI-Assisted Development: uso estratégico de IA generativa (Claude) para otimização de SQL, automação de scripts e engenharia de prompts para DAX avançado.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Definição de métricas de negócio e KPIs industriais, alinhando EDA com os objetivos estratégicos da organização.</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="job">
+            <summary>
+              <div style="display: flex; gap: 20px; align-items: center; min-width: 0; flex: 1;">
+                <div style="width: 56px; height: 56px; border-radius: 12px; background: oklch(0.95 0.02 235); border: 1px solid oklch(0.8 0.03 235); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: oklch(0.45 0.12 235); flex-shrink: 0;">BR</div>
+                <div style="min-width: 0;">
+                  <div class="job-title" style="font-size: 15px; font-weight: 600;">Gestor de Cliente e Projeto</div>
+                  <div style="font-size: 12.5px; margin-top: 2px;"><span style="color: oklch(0.45 0.12 235); font-weight: 500;">BRAMP, Braga</span> <span style="color: #9ca3af;">· Mar 2024 — Nov 2025</span></div>
+                  <div style="font-size: 12.5px; color: #6b7280; margin-top: 4px;">Gestão de carteira do setor automóvel, SLA's e KPI's de projeto, do estudo DFM ao lançamento em fábrica.</div>
+                </div>
+              </div>
+              <svg class="jchev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="job-body">
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Gestão estratégica de carteira de clientes do setor automóvel, garantindo cumprimento de SLA's e KPI's de projeto.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Acompanhamento técnico de novos projetos, da adjudicação ao estudo DFM, construção de molde, PPAP e lançamento para fábrica.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Análise e monitorização de faturação e revisão de preços, garantindo rentabilidade em todas as fases do projeto.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Elaboração de cotações e orçamentos detalhados com base em análise de custos e viabilidade técnica (injeção/moldes).</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="job">
+            <summary>
+              <div style="display: flex; gap: 20px; align-items: center; min-width: 0; flex: 1;">
+                <div style="width: 56px; height: 56px; border-radius: 12px; background: oklch(0.95 0.02 235); border: 1px solid oklch(0.8 0.03 235); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: oklch(0.45 0.12 235); flex-shrink: 0;">FF</div>
+                <div style="min-width: 0;">
+                  <div class="job-title" style="font-size: 15px; font-weight: 600;">Técnico de Controlo de Qualidade</div>
+                  <div style="font-size: 12.5px; margin-top: 2px;"><span style="color: oklch(0.45 0.12 235); font-weight: 500;">FreshFactor, Faro/Odemira</span> <span style="color: #9ca3af;">· Jan 2022 — Fev 2024</span></div>
+                  <div style="font-size: 12.5px; color: #6b7280; margin-top: 4px;">Conformidade CoC/GlobalG.A.P./HACCP; coordenação logística e gestão de não-conformidades.</div>
+                </div>
+              </div>
+              <svg class="jchev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="job-body">
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Gestão e implementação do manual de qualidade da unidade e segurança no trabalho.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Conformidade com padrões internacionais de qualidade (CoC, GlobalG.A.P., HACCP) e legislação em vigor.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Análise técnica de parâmetros de qualidade para categorização e seleção de pequenos frutos na receção.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Coordenação logística e otimização do fluxo de expedição, com gestão proativa de reclamações e não-conformidades.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Participação em auditorias de certificação, clientes e inspeções ACT.</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="job">
+            <summary>
+              <div style="display: flex; gap: 20px; align-items: center; min-width: 0; flex: 1;">
+                <div style="width: 56px; height: 56px; border-radius: 12px; background: oklch(0.95 0.02 235); border: 1px solid oklch(0.8 0.03 235); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: oklch(0.45 0.12 235); flex-shrink: 0;">AV</div>
+                <div style="min-width: 0;">
+                  <div class="job-title" style="font-size: 15px; font-weight: 600;">Engenheiro de Processos</div>
+                  <div style="font-size: 12.5px; margin-top: 2px;"><span style="color: oklch(0.45 0.12 235); font-weight: 500;">Avisabor — Grupo Lusiaves, Estarreja</span> <span style="color: #9ca3af;">· 2020 — 2021</span></div>
+                  <div style="font-size: 12.5px; color: #6b7280; margin-top: 4px;">Liderança de 50 pessoas na linha de abate; otimização de KPIs de produção e conformidade HACCP.</div>
+                </div>
+              </div>
+              <svg class="jchev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="job-body">
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Gestão integral da linha de abate de frango, da receção à evisceração.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Liderança operacional de uma equipa de 50 pessoas e 3 chefias intermédias.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Monitorização e otimização de KPIs de produção (rendimentos, qualidade, tempos de paragem).</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Deteção proativa de anomalias em mais de 30 equipamentos industriais.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Cumprimento rigoroso das normas HACCP e de bem-estar animal (WelFair).</span></div>
+              </div>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </details>
+
+    <!-- LINHA 2 — LADO B -->
+    <details class="row">
+      <summary>
+        <span>Lado B</span>
+        <span class="meta"><span class="count">3</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+      </summary>
+      <div class="content">
+        <div style="display: flex; flex-direction: column;">
+
+          <details class="job">
+            <summary>
+              <div style="display: flex; gap: 20px; align-items: center; min-width: 0; flex: 1;">
+                <div style="width: 56px; height: 56px; border-radius: 12px; background: oklch(0.95 0.02 235); border: 1px solid oklch(0.8 0.03 235); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: oklch(0.45 0.12 235); flex-shrink: 0;">CV</div>
+                <div style="min-width: 0;">
+                  <div class="job-title" style="font-size: 15px; font-weight: 600;">Socorrista</div>
+                  <div style="font-size: 12.5px; margin-top: 2px;"><span style="color: oklch(0.45 0.12 235); font-weight: 500;">Cruz Vermelha Portuguesa</span> <span style="color: #9ca3af;">· desde 2019</span></div>
+                  <div style="font-size: 12.5px; color: #6b7280; margin-top: 4px;">+400 emergências, 2000h de serviço pré-hospitalar.</div>
+                </div>
+              </div>
+              <svg class="jchev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="job-body">
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Integrado semanalmente em equipas de socorro pré-hospitalar, transporte de doentes e operações de comando, contabilizando mais de 400 emergências e 2000 horas de serviço.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Apoio em eventos de cariz social e no âmbito da proteção civil (festividades, provas desportivas, combate a incêndios e COVID-19).</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="job">
+            <summary>
+              <div style="display: flex; gap: 20px; align-items: center; min-width: 0; flex: 1;">
+                <div style="width: 56px; height: 56px; border-radius: 12px; background: oklch(0.95 0.02 235); border: 1px solid oklch(0.8 0.03 235); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: oklch(0.45 0.12 235); flex-shrink: 0;">SC</div>
+                <div style="min-width: 0;">
+                  <div class="job-title" style="font-size: 15px; font-weight: 600;">Explicador / Professor</div>
+                  <div style="font-size: 12.5px; margin-top: 2px;"><span style="color: oklch(0.45 0.12 235); font-weight: 500;">Santa Casa da Misericórdia de Amares</span> <span style="color: #9ca3af;">· desde set. 2025</span></div>
+                  <div style="font-size: 12.5px; color: #6b7280; margin-top: 4px;">Apoio pedagógico em Matemática, Física, Química, Biologia e Inglês (10º–12º anos).</div>
+                </div>
+              </div>
+              <svg class="jchev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="job-body">
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Apoio pedagógico e explicações de Matemática A, Física e Química, Biologia e Geologia, e Inglês, a alunos do 10º, 11º e 12º anos.</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="job">
+            <summary>
+              <div style="display: flex; gap: 20px; align-items: center; min-width: 0; flex: 1;">
+                <div style="width: 56px; height: 56px; border-radius: 12px; background: oklch(0.95 0.02 235); border: 1px solid oklch(0.8 0.03 235); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: oklch(0.45 0.12 235); flex-shrink: 0;">NB</div>
+                <div style="min-width: 0;">
+                  <div class="job-title" style="font-size: 15px; font-weight: 600;">Presidente da Direção</div>
+                  <div style="font-size: 12.5px; margin-top: 2px;"><span style="color: oklch(0.45 0.12 235); font-weight: 500;">Núcleo de Estudos de Engenharia Biológica</span> <span style="color: #9ca3af;">· 2018</span></div>
+                  <div style="font-size: 12.5px; color: #6b7280; margin-top: 4px;">Liderança de equipa de 28 elementos em atividades para 250 alunos do curso.</div>
+                </div>
+              </div>
+              <svg class="jchev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="job-body">
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Liderança de uma equipa de 28 elementos na organização de atividades de âmbito pedagógico, empreendedorismo, recreativo e desportivo, para os 250 alunos do curso, e na colaboração com outras associações.</span></div>
+              </div>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </details>
+
+    <!-- LINHA 3 — FORMAÇÃO ACADÉMICA -->
+    <details class="row">
+      <summary>
+        <span>Formação Académica</span>
+        <span class="meta"><span class="count">2</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+      </summary>
+      <div class="content">
+        <div style="display: flex; flex-direction: column;">
+
+          <details class="job">
+            <summary>
+              <div style="display: flex; gap: 20px; align-items: center; min-width: 0; flex: 1;">
+                <div style="width: 56px; height: 56px; border-radius: 12px; background: oklch(0.95 0.02 235); border: 1px solid oklch(0.8 0.03 235); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: oklch(0.45 0.12 235); flex-shrink: 0;">TS</div>
+                <div style="min-width: 0;">
+                  <div class="job-title" style="font-size: 15px; font-weight: 600;">Reconversão para Data Analytics</div>
+                  <div style="font-size: 12.5px; margin-top: 2px;"><span style="color: oklch(0.45 0.12 235); font-weight: 500;">Tokyo School, Braga</span> <span style="color: #9ca3af;">· 2025 — 2026</span></div>
+                  <div style="font-size: 12.5px; color: #6b7280; margin-top: 4px;">Python, Power BI/Tableau, SQL, Machine Learning e SCRUM.</div>
+                </div>
+              </div>
+              <svg class="jchev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="job-body">
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Análise de dados avançada: limpeza, manipulação e análise exploratória de grandes volumes de dados com Python (Pandas, NumPy).</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Business Intelligence: desenvolvimento de dashboards dinâmicos em Power BI e Tableau para suporte à decisão estratégica.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Machine Learning: aplicação de algoritmos de aprendizagem automática para modelos preditivos e análise de tendências.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">SQL: domínio da linguagem SQL para extração e estruturação de dados.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">SCRUM: aplicação de metodologias ágeis para gestão eficiente de projetos de dados.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Empreendedorismo: visão de negócio para identificar oportunidades de monetização de dados.</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="job">
+            <summary>
+              <div style="display: flex; gap: 20px; align-items: center; min-width: 0; flex: 1;">
+                <div style="width: 56px; height: 56px; border-radius: 12px; background: oklch(0.95 0.02 235); border: 1px solid oklch(0.8 0.03 235); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: oklch(0.45 0.12 235); flex-shrink: 0;">UM</div>
+                <div style="min-width: 0;">
+                  <div class="job-title" style="font-size: 15px; font-weight: 600;">Mestrado Integrado em Engenharia Biológica</div>
+                  <div style="font-size: 12.5px; margin-top: 2px;"><span style="color: oklch(0.45 0.12 235); font-weight: 500;">Universidade do Minho</span> <span style="color: #9ca3af;">· 2014 — 2019</span></div>
+                  <div style="font-size: 12.5px; color: #6b7280; margin-top: 4px;">Média 16,2 valores · bolsa de excelência (2015–2018).</div>
+                </div>
+              </div>
+              <svg class="jchev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="job-body">
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Engenharia de processo: controlo e instrumentação, otimização, fenómenos de transferência, gestão de stocks, processos de separação, termodinâmica e serviços industriais.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Engenharia das fermentações, enzimática, reações e bioquímica económica.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Ciência e engenharia dos alimentos.</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Higiene e segurança alimentar (BRC Food, FSSC 22000, IFS Food, aplicação HACCP).</span></div>
+                <div style="display: flex; gap: 8px;"><span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(0.55 0.12 235); margin-top: 7px; flex-shrink: 0;"></span><span style="font-size: 13px; color: #4b5563; line-height: 1.5;">Elementos de Qualidade e Fiabilidade (ISO 9000, SPC, ferramentas da qualidade) e segurança no trabalho.</span></div>
+              </div>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </details>
+
+    <!-- LINHA 4 — CERTIFICAÇÕES -->
+    <details class="row">
+      <summary>
+        <span>Certificações</span>
+        <span class="meta"><span class="count">4</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+      </summary>
+      <div class="content">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px;">
+
+          <details class="job">
+            <summary>
+              <div style="display: flex; gap: 16px; align-items: center; min-width: 0; flex: 1;">
+                <div style="width: 48px; height: 48px; border-radius: 10px; background: oklch(0.95 0.02 235); border: 1px solid oklch(0.8 0.03 235); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: oklch(0.45 0.12 235); flex-shrink: 0;">CI</div>
+                <div style="min-width: 0;">
+                  <div class="job-title" style="font-size: 14.5px; font-weight: 600;">Python Essentials 2</div>
+                  <div style="font-size: 12px; margin-top: 2px;"><span style="color: oklch(0.45 0.12 235); font-weight: 500;">Cisco Network Academy</span> <span style="color: #9ca3af;">· 2026</span></div>
+                </div>
+              </div>
+              <svg class="jchev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="job-body" style="padding-left: 64px;">
+              <div style="font-size: 13px; color: #4b5563; line-height: 1.5;">Módulo avançado de Python: estruturas de dados, exceções, módulos e programação orientada a objetos.</div>
+            </div>
+          </details>
+
+          <details class="job">
+            <summary>
+              <div style="display: flex; gap: 16px; align-items: center; min-width: 0; flex: 1;">
+                <div style="width: 48px; height: 48px; border-radius: 10px; background: oklch(0.95 0.02 235); border: 1px solid oklch(0.8 0.03 235); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: oklch(0.45 0.12 235); flex-shrink: 0;">BM</div>
+                <div style="min-width: 0;">
+                  <div class="job-title" style="font-size: 14.5px; font-weight: 600;">Inglês B2 (48h)</div>
+                  <div style="font-size: 12px; margin-top: 2px;"><span style="color: oklch(0.45 0.12 235); font-weight: 500;">Centro de Línguas BabeliUM</span> <span style="color: #9ca3af;">· 2018</span></div>
+                </div>
+              </div>
+              <svg class="jchev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="job-body" style="padding-left: 64px;">
+              <div style="font-size: 13px; color: #4b5563; line-height: 1.5;">Nível B2 do Quadro Europeu Comum de Referência, 48 horas em compreensão e produção escrita e oral.</div>
+            </div>
+          </details>
+
+          <details class="job">
+            <summary>
+              <div style="display: flex; gap: 16px; align-items: center; min-width: 0; flex: 1;">
+                <div style="width: 48px; height: 48px; border-radius: 10px; background: oklch(0.95 0.02 235); border: 1px solid oklch(0.8 0.03 235); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: oklch(0.45 0.12 235); flex-shrink: 0;">IE</div>
+                <div style="min-width: 0;">
+                  <div class="job-title" style="font-size: 14.5px; font-weight: 600;">CCP (90h)</div>
+                  <div style="font-size: 12px; margin-top: 2px;"><span style="color: oklch(0.45 0.12 235); font-weight: 500;">IEFP</span> <span style="color: #9ca3af;">· 2018</span></div>
+                </div>
+              </div>
+              <svg class="jchev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="job-body" style="padding-left: 64px;">
+              <div style="font-size: 13px; color: #4b5563; line-height: 1.5;">Certificado de Competências Pedagógicas para formadores. Código credencial F682286/2019.</div>
+            </div>
+          </details>
+
+          <details class="job">
+            <summary>
+              <div style="display: flex; gap: 16px; align-items: center; min-width: 0; flex: 1;">
+                <div style="width: 48px; height: 48px; border-radius: 10px; background: oklch(0.95 0.02 235); border: 1px solid oklch(0.8 0.03 235); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: oklch(0.45 0.12 235); flex-shrink: 0;">CV</div>
+                <div style="min-width: 0;">
+                  <div class="job-title" style="font-size: 14.5px; font-weight: 600;">Tripulante de Ambulância + DAE</div>
+                  <div style="font-size: 12px; margin-top: 2px;"><span style="color: oklch(0.45 0.12 235); font-weight: 500;">Cruz Vermelha Portuguesa</span> <span style="color: #9ca3af;">· 2019/2024</span></div>
+                </div>
+              </div>
+              <svg class="jchev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="job-body" style="padding-left: 64px;">
+              <div style="font-size: 13px; color: #4b5563; line-height: 1.5;">Formação de 80h em transporte de doentes e utilização de Desfibrilhador Automático Externo (DAE).</div>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </details>
+
+    <!-- LINHA 5 — COMPETÊNCIAS -->
+    <details class="row">
+      <summary>
+        <span>Competências</span>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="content">
+      <div style="font-size: 11px; color: #9ca3af; margin: 12px 0 16px;">Passa o rato sobre um quadrado</div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+
+        <div class="skill-card">
+          <div class="face front">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="oklch(0.5 0.12 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>
+            <div style="font-size: 14px; font-weight: 600; color: #1f2937;">Ferramentas BI & Visualização</div>
+          </div>
+          <div class="face back">
+            <div style="font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.5 0.12 235); font-weight: 600;">Ferramentas</div>
+            <div style="font-size: 13.5px; color: #374151; line-height: 1.45;">Power BI (Avançado/DAX)<br>Tableau</div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="face front">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="oklch(0.5 0.12 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg>
+            <div style="font-size: 14px; font-weight: 600; color: #1f2937;">Linguagens & Dados</div>
+          </div>
+          <div class="face back">
+            <div style="font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.5 0.12 235); font-weight: 600;">Ferramentas</div>
+            <div style="font-size: 13.5px; color: #374151; line-height: 1.45;">SQL<br>Python (Pandas, NumPy)</div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="face front">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="oklch(0.5 0.12 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg>
+            <div style="font-size: 14px; font-weight: 600; color: #1f2937;">Machine Learning</div>
+          </div>
+          <div class="face back">
+            <div style="font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.5 0.12 235); font-weight: 600;">Ferramentas</div>
+            <div style="font-size: 13.5px; color: #374151; line-height: 1.45;">Análise Preditiva<br>Scikit-Learn · PyTorch</div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="face front">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="oklch(0.5 0.12 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01"/></svg>
+            <div style="font-size: 14px; font-weight: 600; color: #1f2937;">Bases de Dados & IDEs</div>
+          </div>
+          <div class="face back">
+            <div style="font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.5 0.12 235); font-weight: 600;">Ferramentas</div>
+            <div style="font-size: 13.5px; color: #374151; line-height: 1.45;">SQL Server · DBeaver<br>VS Code · PyCharm · ETL</div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="face front">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="oklch(0.5 0.12 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.3L18 9l-4.2 1.7L12 15l-1.8-4.3L6 9l4.2-1.7L12 3z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15z"/></svg>
+            <div style="font-size: 14px; font-weight: 600; color: #1f2937;">AI-Assisted Development</div>
+          </div>
+          <div class="face back">
+            <div style="font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.5 0.12 235); font-weight: 600;">Ferramentas</div>
+            <div style="font-size: 13.5px; color: #374151; line-height: 1.45;">Engenharia de Prompts<br>Claude 3.5 Sonnet</div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="face front">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="oklch(0.5 0.12 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            <div style="font-size: 14px; font-weight: 600; color: #1f2937;">Sistemas Industriais</div>
+          </div>
+          <div class="face back">
+            <div style="font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.5 0.12 235); font-weight: 600;">Ferramentas</div>
+            <div style="font-size: 13.5px; color: #374151; line-height: 1.45;">MES (Anturio, CASO)<br>OpEx · KPIs · Data Governance</div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="face front">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="oklch(0.5 0.12 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+            <div style="font-size: 14px; font-weight: 600; color: #1f2937;">Metodologias</div>
+          </div>
+          <div class="face back">
+            <div style="font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.5 0.12 235); font-weight: 600;">Ferramentas</div>
+            <div style="font-size: 13.5px; color: #374151; line-height: 1.45;">Scrum/Agile · Lean<br>Six Sigma · Melhoria Contínua</div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="face front">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="oklch(0.5 0.12 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="13" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+            <div style="font-size: 14px; font-weight: 600; color: #1f2937;">Office & Outras</div>
+          </div>
+          <div class="face back">
+            <div style="font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: oklch(0.5 0.12 235); font-weight: 600;">Ferramentas</div>
+            <div style="font-size: 13.5px; color: #374151; line-height: 1.45;">Excel · PowerPoint · Word<br>Carta B</div>
+          </div>
+        </div>
+
+      </div>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div style="background: oklch(0.97 0.004 240); border-top: 1px solid oklch(0.9 0.005 240); padding: 32px 64px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px; font-size: 13px; color: #4b5563;">
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="oklch(0.5 0.12 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6 12 13 2 6"/></svg>
+        carlosmpgoncalves1996@gmail.com
+      </div>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="oklch(0.5 0.12 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        962 598 713
+      </div>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="oklch(0.5 0.12 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        29 anos
+      </div>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="oklch(0.5 0.12 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Braga, Portugal
+      </div>
+    </div>
+    <div style="display: flex; gap: 10px;">
+      <a href="#" style="display: flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid oklch(0.85 0.01 240); padding: 9px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; color: #1f2937;">
+        <span style="width: 20px; height: 20px; border-radius: 5px; background: oklch(0.45 0.12 235); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">in</span>
+        LinkedIn
+      </a>
+      <a href="#" style="display: flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid oklch(0.85 0.01 240); padding: 9px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; color: #1f2937;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #1f2937;"><circle cx="12" cy="12" r="9"/><path d="M8 12a4 4 0 0 1 8 0M12 3v3M9 21l1.5-4M15 21l-1.5-4"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>
