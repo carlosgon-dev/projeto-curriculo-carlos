@@ -2,18 +2,10 @@
 /* ============ CONFIGURAÇÃO GERAL ============ */
 /* ============================================ */
 
-html {
-    font-size: 16px;
-}
+html {font-size: 16px;}
+body {font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;}
 
-body {
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-}
-
-h1 {
-    font-size: 3 rem;
-}
-
+h1 {font-size: 3 rem;}
 ul {
     list-style: none;
     margin: 0;
@@ -25,9 +17,8 @@ ul {
     gap: 8px;
 }
 
-strong {
-    color: #2b6ca3;
-}
+strong {color: #2b6ca3;}
+
 /* ============================== */
 /* ============ HEADER ============ */
 /* ============================== */
@@ -83,11 +74,9 @@ details{
     background: #ffffff;
     overflow: hidden;~
     
-    /* Pseudoclasse: que só aplica os estilos enquanto o rato está por cima do elemento */
-    &:hover {
-        border-color: purple;
-        background: #DCEBF7;
-    }
+    /* Pseudoclasse: que só aplica os estilos enquanto o rato 
+    está por cima do elemento E quando a barra está fechada */
+    &:not([open]):hover {border-color: purple; background: #DCEBF7;}
 }
 
 /*Texto principal dentro da barra de acordeão */
@@ -100,6 +89,9 @@ summary{
     font-weight: bold;
     font-size: 15px;
     color: #1f2937;
+
+    /* Nos summary que estao dentro da classe entrada, ajusta o padding */
+    .entrada > & {padding: 20px 0;}
 }
 
 /* Seta */
@@ -110,16 +102,10 @@ summary{
 }
 
 /* roda a seta quando abro o separador */
-details[open] > summary .seta {    
-    transform: rotate(-90deg);
-}                                    
+details[open] > summary .seta {    transform: rotate(-90deg);}                                    
 
 /*Organização do conteudo dentro da caixa de acordeão depois de aberta */
-.conteudo-secao {
-    border-top: 1px solid #E5E7EB;
-    padding: 10px 28px 26px;
-
-}
+.conteudo-secao { border-top: 1px solid #E5E7EB; padding: 10px 28px 26px;}
 
 /* Tratamento do texto */
 .texto-corrido{
@@ -139,6 +125,66 @@ details[open] > summary .seta {
     margin-top: 30px;
 }
 
+/* --------| EXPERIENCIA PROFISSIONAL| ---------*/
+
+/* Define a linha que separa as barras de acordeao */
+.entrada {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    border-top: 1px solid #E5E7EB;
+    
+}
+
+/* .entrada:not([open]):hover {
+    background: #DCEBF7;
+} */
+
+/* Flexbox que organiza o logotipo e depois o resto dos elementos à direita */
+.entrada-info{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    min-width: 0;
+    flex: 1;
+}
+
+/* Trata do logotipo */
+.entrada-logotipo{
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: #F7F8FA;
+    border: 1px solid #E5E7EB;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+/* Estilização dos titulos (funcao exercida o emprego/lado B/ e no ensino)*/
+.entrada-titulo {font-size: 15px; font-weight: 600; margin: 0;}
+.entrada-empresa-datas { font-size: 12.5px; margin-top: 2px;}
+.entrada-fonte {color: #2b6ca3;font-weight: 500;}
+.entrada-data {color: #9ca3af;font-weight: 500;}
+.entrada-resumo {font-size: 12.5px; color: #4b5563; margin: 4px 0 0; text-align: justify; font-weight: 600;}
+.entrada-detalhes {
+    list-style: disc; /* adiciona o marcador a cada linha li */
+    margin: 0;
+    padding: 0 0 22px 95px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: justify;
+
+    li {
+        font-size: 13px;
+        color: #4b5563;
+        line-height: 1.5;
+        &::marker {color: #2b6ca3;} 
+        /* antes de existir o ::marker, a bolinha herdava sempre a mesma cor do texto do <li>
+         — não havia forma de a cor da bolinha ser diferente da cor do texto. O ::marker foi 
+         criado exatamente para dar controlo sobre a bolinha independentemente do texto ao lado. */
+    }
+}
 
 
 
@@ -155,7 +201,6 @@ footer {
     gap: 1px;
     padding: 36px 20px;
     font-size: 12px;
-
 }
 
 /* FOOTER - CONTACTOS */
@@ -171,20 +216,13 @@ footer {
     display: flex;
     align-items: center;
     gap: 6px;
-
-    img {
-        width: 1em;
-        height: 1em;
-    }
+    img {width: 1em; height: 1em;}
 }
 
 .container-redes-sociais {
     display: flex;
     gap: 16px;
-
-    img {
-        width: 1em;
-        height: 1em;
+    img {width: 1em;height: 1em;
     }
 }
 
