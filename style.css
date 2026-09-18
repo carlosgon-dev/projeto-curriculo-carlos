@@ -3,9 +3,7 @@
 /* ============================================ */
 
 html {font-size: 16px;}
-body {padding: 0 20px;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;}
-
+body {padding: 0 20px; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;}
 h1 {font-size: 3 rem;}
 ul {
     list-style: none;
@@ -17,7 +15,6 @@ ul {
     justify-content: center;
     gap: 8px;
 }
-
 strong {color: #2b6ca3;}
 
 /* ============================== */
@@ -36,7 +33,6 @@ strong {color: #2b6ca3;}
         height: 56px;
     }
 }
-
 
 header {
     display: flex;
@@ -59,7 +55,6 @@ header {
 /* ============================== */
 /* ============ MAIN ============ */
 /* ============================== */
-
 /*--------------------------------|Configuração geral| -----------------*/
 main{
     display: flex;
@@ -93,6 +88,9 @@ summary{
 
     /* Nos summary que estao dentro da classe entrada, ajusta o padding */
     .entrada > & {padding: 20px 0;}
+
+    /* Centra o nome das 6 barras principais em ecrãs estreitos (nunca as das entradas aninhadas) */
+    @media (max-width: 600px) {main > details > & {justify-content: center;}}
 }
 
 /* Seta */
@@ -100,13 +98,19 @@ summary{
     color: #2b6ca3;
     transform: rotate(90deg);        /*posiciona a seta com a ponta para baixo*/
     transition: transform 0.2s ease; /*temporiza a rotação da seta*/
+
+    /* roda a seta quando abro o separador */
+    details[open] > summary & { transform: rotate(-90deg); }
 }
 
-/* roda a seta quando abro o separador */
-details[open] > summary .seta {    transform: rotate(-90deg);}                                    
-
 /*Organização do conteudo dentro da caixa de acordeão depois de aberta */
-.conteudo-secao { border-top: 1px solid #E5E7EB; padding: 10px 28px 26px;}
+.conteudo-secao {
+    border-top: 1px solid #E5E7EB;
+    padding: 10px 28px 26px;
+
+    /* Em ecrãs estreitos, reduz o espaço lateral (não toca no summary/seta) */
+    @media (max-width: 600px) {padding: 5px 7px 16px;}
+}
 
 /* Tratamento do texto */
 .texto-corrido{
@@ -116,14 +120,18 @@ details[open] > summary .seta {    transform: rotate(-90deg);}
     text-align: justify;
 }
 
-/* --------| Instrução de texto "Clica numa secção para expandir| ---------*/
+/* --------| Instrução de texto "Clica numa secção para expandir" e "Passa o rato sobre um quadrado"| ---------*/
 .dica-acordeoes{
     font-size: 11.5px;
     letter-spacing: 0.1em;          /* espaçamento entre letras */
     color: #9ca3af;
     margin-bottom: 10px;
     margin-top: 10px;
-    text-align: center;
+    text-align: left;
+    padding-left: 28px; /* alinha com o início do nome das barras (mesmo valor lateral do summary) */
+
+    /* Mesmo efeito das barras principais: à esquerda por defeito, ao centro em ecrãs estreitos */
+    @media (max-width: 600px) {text-align: center;}
 }
 
 /* --------| EXPERIENCIA PROFISSIONAL| ---------*/
@@ -134,20 +142,15 @@ details[open] > summary .seta {    transform: rotate(-90deg);}
     border-radius: 0;
     background: transparent;
     border-top: 1px solid #E5E7EB;
-    
 }
 
-/* .entrada:not([open]):hover {
-    background: #DCEBF7;
-} */
-
-/* Flexbox que organiza o logotipo e depois o resto dos elementos à direita */
+/* Grid com 2 colunas (logótipo + texto) e 2 linhas (título/empresa + resumo)*/
 .entrada-info{
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    min-width: 0;
-    flex: 1;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    column-gap: 10px;
+    row-gap: 4px;
+    align-items: center; /* centra o texto (mais baixo) dentro da altura da linha 1, que é ditada pelo logótipo */
     padding-left: 10px;
 }
 
@@ -160,6 +163,12 @@ details[open] > summary .seta {    transform: rotate(-90deg);}
     border: 1px solid #E5E7EB;
     flex-shrink: 0;
     object-fit: contain;
+    grid-column: 1; /* coluna fixa à esquerda — sem isto o auto-placement podia adivinhar mal */
+    grid-row: 1; /* logotipo fixo à linha 1 */
+
+    /* O <div> do texto (título+empresa) é sempre o irmão seguinte ao logótipo */
+    /* coluna do texto, na linha de cima à direita do logótipo*/
+    & + div {grid-column: 2; grid-row: 1; }
 }
 
 /* Estilização dos titulos (funcao exercida o emprego/lado B/ e no ensino)*/
@@ -167,11 +176,30 @@ details[open] > summary .seta {    transform: rotate(-90deg);}
 .entrada-empresa-datas { font-size: 12.5px; margin-top: 2px;}
 .entrada-fonte {color: #2b6ca3;font-weight: 500;}
 .entrada-data {color: #9ca3af;font-weight: 500;}
-.entrada-resumo {font-size: 12.5px; color: #4b5563; margin: 4px 0 0; text-align: justify; font-weight: 600; padding-right: 20px;}
+.entrada-resumo {
+    font-size: 12.5px;
+    color: #4b5563;
+    margin: 4px 0 0;
+    text-align: justify;
+    font-weight: 600;
+    padding-right: 20px;
+    grid-column: 1 / -1; /* abrange as 2 colunas — ignora a coluna do logótipo, usa a largura toda */
+    grid-row: 2; /* fixa o resumo na linha 2, para não deixar o auto-placement empurrá-lo para uma linha 3 */
+    padding-left: 66px; /* 56px do logótipo + 10px do gap, para alinhar com o título nos ecrãs largos */
+
+    /* Em ecrãs estreitos, tira esse padding — o resumo passa a começar
+       à esquerda de tudo (incluindo por baixo do logótipo), como o próprio logótipo. */
+    @media (max-width: 600px) {
+        padding-left: 0;
+    }
+}
 .entrada-detalhes {
     list-style: disc; /* adiciona o marcador a cada linha li */
     margin: 0;
     padding: 0 28px 22px 95px;
+    /* Sincronizado com o breakpoint do .entrada-resumo (600px) — os dois têm
+       de mudar ao mesmo tempo, senão ficam desalinhados um do outro numa zona intermédia. */
+    @media (max-width: 600px) {padding: 0 28px 22px 10px;}
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -186,15 +214,17 @@ details[open] > summary .seta {    transform: rotate(-90deg);}
          — não havia forma de a cor da bolinha ser diferente da cor do texto. O ::marker foi 
          criado exatamente para dar controlo sobre a bolinha independentemente do texto ao lado. */
     }
+
+
 }
 
-/* Grid para o separador certificações */
+/* --------|CERTIFICAÇÕES| ---------*/
 .grid-certificacoes {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     /*permite mudar a estrutura da grid quando reduzo as dimensões da janela*/
-    @media (max-width: 700px) {grid-template-columns: 1fr;}
+    @media (max-width: 900px) {grid-template-columns: 1fr;}
 }
 
 /* --------|COMPETÊNCIAS| ---------*/
@@ -206,7 +236,7 @@ details[open] > summary .seta {    transform: rotate(-90deg);}
     @media (max-width: 600px) {grid-template-columns: 1fr;}
 }
 
-
+/* Define a estrutura/esqueleto de cada competência */
 .competencia {
     position: relative;   /* Permite a sobreposição das duas competencias! */
     height: 150px;
@@ -269,6 +299,7 @@ details[open] > summary .seta {    transform: rotate(-90deg);}
 /* ============ FOOTER ============ */
 /* ================================ */
 
+/*--------------------------------|Configuração geral| -----------------*/
 footer {
     display: flex;
     justify-content: space-between;
@@ -282,7 +313,7 @@ footer {
 
 }
 
-/* FOOTER - CONTACTOS */
+/* --------|CONTACTOS| ---------*/
 .container-contacto {
     display: flex;
     align-items: center;
@@ -299,12 +330,8 @@ footer {
     img {width: 1em; height: 1em;}
 }
 
-.container-redes-sociais {
-    display: flex;
-    gap: 16px;
-    img {width: 1em;height: 1em;
-    }
-}
+/* --------|REDES SOCIAIS| ---------*/
+.container-redes-sociais { display: flex; gap: 16px; img {width: 1em;height: 1em;}}
 
 /* Estilização dos botões LinkedIN e GITHUB */
 .botao-rede {
@@ -321,11 +348,8 @@ footer {
     color: #1f2937;
     text-decoration: none; /* Retira o sublinhado */
     transition: transform 0.15s ease, box-shadow 0.15s ease;
-
     &:hover { transform: translateY(-2px);box-shadow: 0 4px 8px rgba(0,0,0,0.1);}
 }
-
-
 
 
 
