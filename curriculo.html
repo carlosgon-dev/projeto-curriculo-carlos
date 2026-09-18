@@ -6,6 +6,7 @@
     <title>CURRICULO_CARLOS_GONÇALVES</title>
 </head>
 <body>
+    <!--======================== CABEÇALHO (header)==================================== -->
     <header>
         <link rel="stylesheet" href="style.css">
         <img class = "foto_perfil" src = "images/foto_perfil.jpg" alt = "Foto de perfil ">
@@ -19,8 +20,10 @@
         </ul>
 
     </header>
+    
+    <!--======================== CONTEÚDO PRINCIPAL (main)==================================== -->
     <main>
-        <!-- INSTRUÇÃO"Clica numa secção para expandir" -->
+        <!-- INSTRUÇÃO "Clica numa secção para expandir" -->
         <p class="dica-acordeoes">Clica numa secção para expandir</p>
 
         <!-- SOBRE MIM -->
@@ -459,33 +462,42 @@
         </details>
     </main>
 
-
+    <!--======================== RODAPÉ (footer)==================================== -->
     <footer>
+        <!-- CONTAINER CONTACTO -->
         <address class="container-contacto">
+            <!-- E-mail -->
             <div class="item-contacto">
                 <img src="icons/mail.svg" alt="Email">
                 <a href="mailto:carlosmpgoncalves1996@gmail.com">carlosmpgoncalves1996@gmail.com</a>
             </div>
+            <!-- Contacto -->
             <div class="item-contacto">
                 <img src="icons/phone.svg" alt="Telefone">
                 <a href="tel:+351962598713">962 598 713</a>
             </div>
+            <!-- Idade -->
             <div class="item-contacto">
                 <img src="icons/calendar.svg" alt="Idade">
                 <span>29 anos</span>
             </div>
+            <!-- Localização -->
             <div class="item-contacto">
                 <img src="icons/pin.svg" alt="Localização">
                 <span>Braga, Portugal</span>
             </div>
         </address>
 
+        <!-- CONTAINER REDES SOCIAIS -->
         <nav class="container-redes-sociais">
-            <a href="https://www.linkedin.com/in/o-teu-utilizador" target="_blank" rel="noopener" class="botao-rede">
+            <audio id="som-foguete" src="sons/fogo-de-artificio.wav"></audio>
+            <!-- LinkedIN -->
+            <a href="https://www.linkedin.com/in/o-teu-utilizador" target="_blank" rel="noopener" class="botao-rede" onclick="document.getElementById('som-foguete').play()">
                 <img src="icons/linkedin.svg" alt="LinkedIn">
                 LinkedIn
             </a>
-            <a href="https://github.com/o-teu-utilizador" target="_blank" rel="noopener" class="botao-rede">
+            <!-- GITHUB -->
+            <a href="https://github.com/o-teu-utilizador" target="_blank" rel="noopener" class="botao-rede" onclick="document.getElementById('som-foguete').play()">
                 <img src="icons/github.svg" alt="GitHub">
                 GitHub
             </a>
@@ -497,7 +509,7 @@
 
 
     </footer>
-    </body>
+</body>
 
 
 

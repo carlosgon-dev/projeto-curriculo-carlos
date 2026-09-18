@@ -275,15 +275,18 @@ footer {
     align-items: center;
     background-color: #F7F8FA;
     border-top: 1px solid #E5E7EB;
-    gap: 1px;
+    gap: 30px;
     padding: 36px 20px;
     font-size: 12px;
+    @media (max-width: 600px) {flex-direction: column;}
+
 }
 
 /* FOOTER - CONTACTOS */
 .container-contacto {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 16px;
     flex-wrap: wrap;
     font-style: normal
@@ -302,6 +305,26 @@ footer {
     img {width: 1em;height: 1em;
     }
 }
+
+/* Estilização dos botões LinkedIN e GITHUB */
+.botao-rede {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 1px solid #E5E7EB;
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1f2937;
+    text-decoration: none; /* Retira o sublinhado */
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+    &:hover { transform: translateY(-2px);box-shadow: 0 4px 8px rgba(0,0,0,0.1);}
+}
+
 
 
 
