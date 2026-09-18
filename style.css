@@ -3,8 +3,18 @@
 /* ============================================ */
 
 html {font-size: 16px;}
-body {padding: 0 20px; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;}
-h1 {font-size: 3 rem;}
+body {
+    margin: 0; /* o browser põe 8px de margem por defeito no body*/
+    padding: 0 20px;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+    /* Menos margem lateral em ecrãs estreitos, para dar mais espaço ao conteúdo */
+    @media (max-width: 600px) { padding: 0 10px;}
+}
+h1 {
+    font-size: 3rem;
+    @media (max-width: 600px) {font-size: 1.8rem;}
+}
 ul {
     list-style: none;
     margin: 0;
@@ -28,10 +38,7 @@ strong {color: #2b6ca3;}
     object-fit: cover;
     border: 3px solid #2b6ca3;
     
-    @media (max-width: 600px) {
-        width: 56px;
-        height: 56px;
-    }
+    @media (max-width: 600px) {width: 56px;height: 56px;}
 }
 
 header {
@@ -42,6 +49,9 @@ header {
     text-align: center;
     gap: 1px;
     padding: 36px 20px;
+
+    /* Cabeçalho mais compacto em ecrãs estreitos (foto+nome+badges já ocupam muito) */
+    @media (max-width: 600px) {padding: 20px 16px;}
 
     li {
         background-color: #ffffff;
