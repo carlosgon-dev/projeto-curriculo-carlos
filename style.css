@@ -83,7 +83,6 @@ main{
     flex-direction: column;
     gap: 10px;                       /* Faz criar o espaço entre as barras de acordeão */
     padding-bottom: 10px;
-
     /* Repõe um espaço mínimo no topo, já que escondemos a "dica" que antes o criava */
     @media (max-width: 600px) and (max-height: 750px) {padding-top: 10px;}
 }
@@ -107,6 +106,7 @@ summary{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 8px;                       /* espaço mínimo garantido entre o texto e a seta, mesmo quando ficam colados (ex: justify-content: center no mobile) */
     font-weight: bold;
     font-size: 15px;
     color: #1f2937;
@@ -263,11 +263,18 @@ summary{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
+    padding: 0 10px 10px; /* respiro nos lados e no fundo, entre os cartões e as bordas da secção */
+    /* 2 colunas a partir dos 900px, incluindo mobile — nunca cai para 1 coluna */
     @media (max-width: 900px) {grid-template-columns: repeat(2, 1fr);}
-    @media (max-width: 600px) {grid-template-columns: 1fr;}
 }
 
-/* Define a estrutura/esqueleto de cada competência */
+/* Animação de "pulsação" — um anel a expandir e desvanecer, para chamar a atenção para os cartões */
+@keyframes pulso-competencia {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(43, 108, 163, 0.35); }
+    50% { box-shadow: 0 0 0 8px rgba(43, 108, 163, 0); }
+}
+
+/* Define a estrutura/esqueleto de cada competência (agora é um <div> simples, não um <details>) */
 .competencia {
     position: relative;   /* Permite a sobreposição das duas competencias! */
     height: 150px;
@@ -275,6 +282,32 @@ summary{
     border: 1px solid #E5E7EB;
     background: #ffffff;
     overflow: hidden;
+    animation: pulso-competencia 2.4s ease-in-out infinite;
+
+    /* Desfasamento entre cartões, para parecer uma onda a percorrer a grelha em vez de todos a pulsar ao mesmo tempo */
+    &:nth-child(2) {animation-delay: 0.2s;}
+    &:nth-child(3) {animation-delay: 0.4s;}
+    &:nth-child(4) {animation-delay: 0.6s;}
+    &:nth-child(5) {animation-delay: 0.8s;}
+    &:nth-child(6) {animation-delay: 1s;}
+    &:nth-child(7) {animation-delay: 1.2s;}
+    &:nth-child(8) {animation-delay: 1.4s;}
+
+    /* Já sabes que é interativo — para a pulsação enquanto interages com o cartão */
+    &:hover, &:has(.competencia-toggle[open]) { animation: none; }
+
+    /* Respeita quem prefere menos animações no ecrã */
+    @media (prefers-reduced-motion: reduce) { animation: none; }
+}
+
+/* O <details> aqui dentro serve só de "botão" de clique/toque — não guarda nenhum conteúdo escondido,
+   por isso nunca sofre do bloqueio interno que os browsers aplicam a <details> nunca abertos */
+.competencia-toggle {
+    position: absolute;
+    inset: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
 }
 
 /* Features partilhadas por ambas as faces */
@@ -292,22 +325,23 @@ summary{
     transition: opacity 0.2s ease;
 }
 
-/* Estilização na face da frente */
+/* Estilização na face da frente*/
 .competencia-frente{
+    list-style: none;                      /* tira a setinha do <summary> — Firefox */
     img { width: 26px; height: 26px };
     p {
         font-size: 14px;
         font-weight: 600;
         color: #1f2937;
     }
-    /* Código que permite que, uqando o rato passa em cima, permite a visualização doque está por detrás do card*/
-    .competencia:hover & { opacity: 0; }
 }
+.competencia-frente::-webkit-details-marker { display: none; } /* tira a setinha do <summary>*/
 
-/* Estilização na face de trás*/
+/* Estilização na face de trás — agora é irmã do <details>, não filha, por isso é sempre um elemento normal */
 .competencia-verso{
-    opacity: 0; 
+    opacity: 0;
     background: #DCEBF7;
+    pointer-events: none; /* deixa os cliques "passarem através" para o <summary> por baixo — resolve o bug do 2º clique não fechar */
     span {
         font-size: 10.5px;
         letter-spacing: 0.06em;
@@ -320,11 +354,20 @@ summary{
         color: #374151;
         line-height: 1.45;
     };
-    /* Código que permite que, uqando o rato passa em cima, permite a visualização doque está por detrás do card*/
-    .competencia:hover & { opacity: 1; }
 }
 
+/* Rato de verdade: mostra ao passar por cima, sem precisar de clicar */
+@media (hover: hover) and (pointer: fine) {
+    .competencia:hover .competencia-frente { opacity: 0; }
+    .competencia:hover .competencia-verso { opacity: 1; }
+}
 
+/* Ecrã tátil (sem hover fiável): usa o toggle nativo do <details> — toca para abrir, toca outra vez para fechar.
+   ~ é o seletor de "irmão geral": aplica-se à .competencia-verso que vem a seguir ao .competencia-toggle aberto */
+@media (hover: none) {
+    .competencia-toggle[open] .competencia-frente { opacity: 0; }
+    .competencia-toggle[open] ~ .competencia-verso { opacity: 1; }
+}
 
 /* ================================ */
 /* ============ FOOTER ============ */
