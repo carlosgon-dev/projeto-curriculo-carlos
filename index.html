@@ -27,8 +27,12 @@
         <p class="dica-acordeoes">Clica numa secção para expandir</p>
 
         <!-- SOBRE MIM -->
-        <details name="secoes-principais">
-            <summary>Sobre mim <span class="seta">▸</span></summary>
+        <details name="secoes-principais"
+            ontoggle="if (!this.open) { var cabritinha = document.getElementById('cabritinha'); cabritinha.pause(); cabritinha.currentTime = 0; }">
+            <audio id="cabritinha" src="sons/cabritinha.mp3"></audio>
+            <summary onclick="if (!this.parentElement.open) { var cabritinha = document.getElementById('cabritinha'); cabritinha.currentTime = 0; cabritinha.play(); }"
+                     >Sobre mim <span class="seta">▸</span>
+            </summary>
             <div class="conteudo-secao texto-corrido">
                 <p>Engenheiro de formação com sólida experiência em ambientes industriais complexos
                 e operações críticas, atualmente especializado em <strong class="destaque1">Analytics & Business Intelligence (BI)</strong>.</p>
