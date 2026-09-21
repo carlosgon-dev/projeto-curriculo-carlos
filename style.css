@@ -146,6 +146,15 @@ summary{
     color: #374151;
     line-height: 1.75;
     text-align: justify;
+
+    /* No desktop, os <p> passam a "inline" — deixam de forçar quebra de linha, o texto flui todo junto */
+    p { display: inline; }
+
+    /* No mobile, voltam a bloco (cada frase na sua linha), com espaço entre parágrafos */
+    @media (max-width: 600px) {
+        p { display: block; margin-bottom: 12px; }
+        p:last-child { margin-bottom: 0; }
+    }
 }
 
 /* --------| Instrução de texto "Clica numa secção para expandir" e "Passa o rato sobre um quadrado"| ---------*/
@@ -245,8 +254,6 @@ summary{
          — não havia forma de a cor da bolinha ser diferente da cor do texto. O ::marker foi 
          criado exatamente para dar controlo sobre a bolinha independentemente do texto ao lado. */
     }
-
-
 }
 
 /* --------|CERTIFICAÇÕES| ---------*/
@@ -400,7 +407,6 @@ footer {
     gap: 16px;
     flex-wrap: wrap;
     font-style: normal;
-
     @media (max-width: 600px) and (max-height: 750px) {gap: 8px;}
 }
 
@@ -437,7 +443,3 @@ footer {
         font-size: 11px;
     }
 }
-
-
-
-
