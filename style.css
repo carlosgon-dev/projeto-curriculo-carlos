@@ -93,8 +93,8 @@ details{
     border-radius: 10px;
     background: #ffffff;
     overflow: hidden;
-    
-    /* Pseudoclasse: que só aplica os estilos enquanto o rato 
+
+    /* Pseudoclasse: que só aplica os estilos enquanto o rato
     está por cima do elemento E quando a barra está fechada */
     &:not([open]):hover {border-color: purple; background: #DCEBF7;}
 }
