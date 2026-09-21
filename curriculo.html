@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CURRICULO_CARLOS_GONÇALVES</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!--======================== CABEÇALHO (header)==================================== -->
     <header>
-        <link rel="stylesheet" href="style.css">
         <img class = "foto_perfil" src = "images/foto_perfil.jpg" alt = "Foto de perfil ">
         <h1>CARLOS MIGUEL PEREIRA GONÇALVES</h1>
         <ul>
@@ -98,7 +98,7 @@
                             <div>
                                 <h3 class="entrada-titulo">Técnico controlo de qualidade</h3>
                                 <div class="entrada-empresa-datas">
-                                        <span class="entrada-fonte">BRAMP - Metais e polímeros de Braga, Lda.</span>
+                                        <span class="entrada-fonte">FreshFactor, Faro/Odemira</span>
                                         <span class="entrada-data">· Janeiro 2022 a Fevereiro 2024</span>
                                 </div>
                             </div>
@@ -135,7 +135,7 @@
                             <li>Monitorização e otimização de KPIs de produção (rendimentos, qualidade e tempos de paragem), usando análise de desvios p/ implementar melhorias imediatas no fluxo linha.</li>
                             <li>Deteção proativa de anomalias e identificação de oportunidades de melhoria em mais de 30 equipamentos industriais, assegurando a continuidade e conformidade do produto final.</li>
                             <li>Garantir o cumprimento rigoroso das normas de Higiene e segurança alimentar (<em>HACCP</em>) e bem-estar animal (<em>WelFair</em>) em total conformidade com a legislação nacional e europeia em vigor.</li>
-
+                        </ul>
                 </details>
 
             </div>
@@ -367,14 +367,16 @@
         <details name="secoes-principais">
             <summary>Competências <span class="seta">▸</span></summary>
             
-            <p class="dica-acordeoes">Passa o rato sobre um quadrado</p>
+            <p class="dica-acordeoes">Clica num quadrado</p>
             <div class="grid-competencias">
                 <!-- Ferramentas de BI & Visualização" -->
                 <div class="competencia">
-                    <div class="competencia-frente">
-                        <img src="icons/chart.svg" alt="Ferramentas BI & Visualização">
-                        <p>Ferramentas BI & Visualização</p>
-                    </div>
+                    <details class="competencia-toggle">
+                        <summary class="competencia-frente">
+                            <img src="icons/chart.svg" alt="Ferramentas BI & Visualização">
+                            <p>Ferramentas BI & Visualização</p>
+                        </summary>
+                    </details>
                     <div class="competencia-verso">
                         <span>Ferramentas</span>
                         <p>Power BI (Avançado/DAX)<br>Tableau</p>
@@ -382,10 +384,12 @@
                 </div>
                 <!-- Linguagem & Dados" -->
                 <div class="competencia">
-                    <div class="competencia-frente">
-                        <img src="icons/database.svg" alt="Linguagens & Dados">
-                        <p>Linguagens & Dados</p>
-                    </div>
+                    <details class="competencia-toggle">
+                        <summary class="competencia-frente">
+                            <img src="icons/database.svg" alt="Linguagens & Dados">
+                            <p>Linguagens & Dados</p>
+                        </summary>
+                    </details>
                     <div class="competencia-verso">
                         <span>Ferramentas</span>
                         <p>SQL<br>Python (Pandas, NumPy)</p>
@@ -393,10 +397,12 @@
                 </div>
                 <!-- Machine Learning" -->
                 <div class="competencia">
-                    <div class="competencia-frente">
-                        <img src="icons/analysis.svg" alt="Machine Learning">
-                        <p>Machine Learning</p>
-                    </div>
+                    <details class="competencia-toggle">
+                        <summary class="competencia-frente">
+                            <img src="icons/analysis.svg" alt="Machine Learning">
+                            <p>Machine Learning</p>
+                        </summary>
+                    </details>
                     <div class="competencia-verso">
                         <span>Ferramentas</span>
                         <p>Análise Preditiva<br>Scikit-Learn · PyTorch</p>
@@ -404,10 +410,12 @@
                 </div>
                 <!-- Bases de Dados & IDEs" -->
                 <div class="competencia">
-                    <div class="competencia-frente">
-                        <img src="icons/server.svg" alt="Bases de Dados & IDEs">
-                        <p>Bases de Dados & IDEs</p>
-                    </div>
+                    <details class="competencia-toggle">
+                        <summary class="competencia-frente">
+                            <img src="icons/server.svg" alt="Bases de Dados & IDEs">
+                            <p>Bases de Dados & IDEs</p>
+                        </summary>
+                    </details>
                     <div class="competencia-verso">
                         <span>Ferramentas</span>
                         <p>SQL Server · DBeaver<br>VS Code · PyCharm · ETL</p>
@@ -415,10 +423,12 @@
                 </div>
                 <!-- AI-Assisted Development" -->
                 <div class="competencia">
-                    <div class="competencia-frente">
-                        <img src="icons/sparkles.svg" alt="AI-Assisted Development">
-                        <p>AI-Assisted Development</p>
-                    </div>
+                    <details class="competencia-toggle">
+                        <summary class="competencia-frente">
+                            <img src="icons/sparkles.svg" alt="AI-Assisted Development">
+                            <p>AI-Assisted Development</p>
+                        </summary>
+                    </details>
                     <div class="competencia-verso">
                         <span>Ferramentas</span>
                         <p>Engenharia de Prompts<br>Claude 3.5 Sonnet</p>
@@ -426,10 +436,12 @@
                 </div>
                 <!-- Sistemas Industriais" -->
                 <div class="competencia">
-                    <div class="competencia-frente">
-                        <img src="icons/settings.svg" alt="Sistemas Industriais">
-                        <p>Sistemas Industriais</p>
-                    </div>
+                    <details class="competencia-toggle">
+                        <summary class="competencia-frente">
+                            <img src="icons/settings.svg" alt="Sistemas Industriais">
+                            <p>Sistemas Industriais</p>
+                        </summary>
+                    </details>
                     <div class="competencia-verso">
                         <span>Ferramentas</span>
                         <p>MES (Anturio, CASO)<br>OpEx · KPIs · Data Governance</p>
@@ -437,10 +449,12 @@
                 </div>
                 <!-- Metodologias" -->
                 <div class="competencia">
-                    <div class="competencia-frente">
-                        <img src="icons/refresh.svg" alt="Metodologias">
-                        <p>Metodologias</p>
-                    </div>
+                    <details class="competencia-toggle">
+                        <summary class="competencia-frente">
+                            <img src="icons/refresh.svg" alt="Metodologias">
+                            <p>Metodologias</p>
+                        </summary>
+                    </details>
                     <div class="competencia-verso">
                         <span>Ferramentas</span>
                         <p>Scrum/Agile · Lean<br>Six Sigma · Melhoria Contínua</p>
@@ -448,10 +462,12 @@
                 </div>
                 <!-- Office & Outras" -->
                 <div class="competencia">
-                    <div class="competencia-frente">
-                        <img src="icons/briefcase.svg" alt="Office & Outras">
-                        <p>Office & Outras</p>
-                    </div>
+                    <details class="competencia-toggle">
+                        <summary class="competencia-frente">
+                            <img src="icons/briefcase.svg" alt="Office & Outras">
+                            <p>Office & Outras</p>
+                        </summary>
+                    </details>
                     <div class="competencia-verso">
                         <span>Ferramentas</span>
                         <p>Excel · PowerPoint · Word<br>Carta B</p>
