@@ -1,21 +1,17 @@
-/* ============================================ */
-/* ============ CONFIGURAÇÃO GERAL ============ */
-/* ============================================ */
+/* ======================================================= */
+/* ================== CONFIGURAÇÃO GERAL ================= */
+/* ======================================================= */
 
-html {font-size: 16px;}
+html {font-size: 16px; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;}
 body {
     margin: 0; /* o browser põe 8px de margem por defeito no body*/
     padding: 0 20px;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-
     /* Menos margem lateral em ecrãs estreitos, para dar mais espaço ao conteúdo */
     @media (max-width: 600px) { padding: 0 10px;}
 }
-h1 {
-    font-size: 3rem;
-    @media (max-width: 600px) {font-size: 1.8rem;}
-    @media (max-width: 600px) and (max-height: 750px) {font-size: 1.4rem;}
-}
+
+/* ---------------Tags--------------- */
+h1 {font-size: 3rem; @media (max-width: 600px) {font-size: 1.4rem;}}
 ul {
     list-style: none;
     margin: 0;
@@ -24,25 +20,20 @@ ul {
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
 }
 strong {color: #2b6ca3;}
+
+/* --------- Efeitos especiais--------- */
+/* Animação de "pulsação" — um anel a expandir e desvanecer, para chamar a atenção para os cartões */
+@keyframes pulso-competencia {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(43, 108, 163, 0.35); }
+    50% { box-shadow: 0 0 0 8px rgba(43, 108, 163, 0); }
+}
 
 /* ============================== */
 /* ============ HEADER ============ */
 /* ============================== */
-
-.foto_perfil {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #2b6ca3;
-    animation: pulso-competencia 2.4s ease-in-out infinite;
-
-    @media (max-width: 600px) {width: 56px;height: 56px;}
-    @media (max-width: 600px) and (max-height: 750px) {width: 44px;height: 44px;}
-}
 
 header {
     display: flex;
@@ -54,38 +45,54 @@ header {
     padding: 36px 20px;
 
     /* Cabeçalho mais compacto em ecrãs estreitos (foto+nome+badges já ocupam muito) */
-    @media (max-width: 600px) {padding: 20px 16px;}
-
-    /* Ecrã com pouca ALTURA (independente da largura) — objetivo: caber tudo sem scroll */
-    @media (max-width: 600px) and (max-height: 750px) {padding: 10px 16px;}
+    /* Badges mais juntas, para caberem em menos linhas */
+    @media (max-width: 600px) {padding: 10px 10px; ul {gap: 6px;}}
 
     li {
         background-color: #ffffff;
         color: #2b6ca3;
         padding: 6px 14px;
-        border-radius: 999px;
-        font-size: 12.5px;
+        border-radius: 900px;
+        font-size: 14px;
         font-weight: 600;
-
-        @media (max-width: 600px) and (max-height: 750px) {padding: 4px 10px; font-size: 11px;}
-    }
-
-    /* Badges mais juntas, para caberem em menos linhas */
-    @media (max-width: 600px) and (max-height: 750px) {
-        ul {gap: 6px;}
+        @media (max-width: 600px) {padding: 4px 10px; font-size: 11px;}
     }
 }
-/* ============================== */
-/* ============ MAIN ============ */
-/* ============================== */
-/*--------------------------------|Configuração geral| -----------------*/
+
+.foto_perfil {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #2b6ca3;
+    animation: pulso-competencia 2.4s ease-in-out infinite;
+    @media (max-width: 600px) {width: 80px;height: 80px;}
+}
+
+/* ===================================================================== */
+/* ============================= MAIN ================================== */
+/* ===================================================================== */
+/*---------------------------|Configuração geral| -----------------------*/
 main{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
     gap: 10px;                       /* Faz criar o espaço entre as barras de acordeão */
     padding-bottom: 10px;
-    /* Repõe um espaço mínimo no topo, já que escondemos a "dica" que antes o criava */
-    @media (max-width: 600px) and (max-height: 750px) {padding-top: 10px;}
+    @media (max-width: 600px) {padding-top: 10px;}
+}
+
+/*Instrução de texto "Clica numa secção para expandir" e "Passa o rato sobre um quadrado"*/
+.instrucao-acordeoes{
+    font-size: 12px;
+    letter-spacing: 0.1em;          /* espaçamento entre letras */
+    color: #9ca3af;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: left;
+    padding-left: 28px; /* alinha com o início do nome das barras (mesmo valor lateral do summary) */
+    @media (max-width: 600px) {display: none;}    /* Remove a instrução */
 }
 
 /*Barras de acordeão */
@@ -95,9 +102,15 @@ details{
     background: #ffffff;
     overflow: hidden;
 
-    /* Pseudoclasse: que só aplica os estilos enquanto o rato
-    está por cima do elemento E quando a barra está fechada */
+    /* Pseudoclasse: que só aplica os estilos enquanto o ratoestá por cima do elemento E quando a barra está fechada */
     &:not([open]):hover {border-color: purple; background: #DCEBF7;}
+}
+
+/*Organização do conteudo dentro da caixa de acordeão depois de aberta */
+.conteudo-secao {
+    border-top: 1px solid #E5E7EB;
+    padding: 10px 28px 26px;
+    @media (max-width: 600px) {padding: 5px 7px 16px;}     /* Em ecrãs estreitos, reduz o espaço lateral (não toca no summary/seta) */
 }
 
 /*Texto principal dentro da barra de acordeão */
@@ -116,29 +129,17 @@ summary{
     .entrada > & {padding: 20px 0;}
 
     /* Centra o nome das 6 barras principais em ecrãs estreitos (nunca as das entradas aninhadas) */
-    @media (max-width: 600px) {main > details > & {justify-content: center;}}
-
     /* Reduz o padding vertical das barras, para caberem mais numa só página */
-    @media (max-width: 600px) and (max-height: 750px) {padding: 10px 28px;}
+    @media (max-width: 600px) {main > details > & {justify-content: center; padding: 10px 28px;}}
+
 }
 
 /* Seta */
 .seta {
     color: #2b6ca3;
-    transform: rotate(90deg);        /*posiciona a seta com a ponta para baixo*/
-    transition: transform 0.2s ease; /*temporiza a rotação da seta*/
-
-    /* roda a seta quando abro o separador */
-    details[open] > summary & { transform: rotate(-90deg); }
-}
-
-/*Organização do conteudo dentro da caixa de acordeão depois de aberta */
-.conteudo-secao {
-    border-top: 1px solid #E5E7EB;
-    padding: 10px 28px 26px;
-
-    /* Em ecrãs estreitos, reduz o espaço lateral (não toca no summary/seta) */
-    @media (max-width: 600px) {padding: 5px 7px 16px;}
+    transform: rotate(90deg);                                   /*posiciona a seta com a ponta para baixo*/
+    transition: transform 0.2s ease;                            /*temporiza a rotação da seta*/
+    details[open] > summary & { transform: rotate(-90deg); }    /* roda a seta quando abro o separador */
 }
 
 /* Tratamento do texto */
@@ -152,27 +153,7 @@ summary{
     p { display: inline; }
 
     /* No mobile, voltam a bloco (cada frase na sua linha), com espaço entre parágrafos */
-    @media (max-width: 600px) {
-        p { display: block; margin-bottom: 12px; }
-        p:last-child { margin-bottom: 0; }
-    }
-}
-
-/* --------| Instrução de texto "Clica numa secção para expandir" e "Passa o rato sobre um quadrado"| ---------*/
-.dica-acordeoes{
-    font-size: 11.5px;
-    letter-spacing: 0.1em;          /* espaçamento entre letras */
-    color: #9ca3af;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    text-align: left;
-    padding-left: 28px; /* alinha com o início do nome das barras (mesmo valor lateral do summary) */
-
-    /* Mesmo efeito das barras principais: à esquerda por defeito, ao centro em ecrãs estreitos */
-    @media (max-width: 600px) {text-align: center;}
-
-    /* Só some em ecrãs a sério pequenos (estreito E baixo ao mesmo tempo) — não em janelas desktop só baixas */
-    @media (max-width: 600px) and (max-height: 750px) {display: none;}
+    @media (max-width: 600px) { p { display: block; margin-bottom: 0; }}
 }
 
 /* --------| EXPERIENCIA PROFISSIONAL| ---------*/
@@ -191,7 +172,7 @@ summary{
     grid-template-columns: 56px 1fr;
     column-gap: 10px;
     row-gap: 4px;
-    align-items: center; /* centra o texto (mais baixo) dentro da altura da linha 1, que é ditada pelo logótipo */
+    align-items: center; 
     padding-left: 10px;
 }
 
@@ -206,15 +187,15 @@ summary{
     object-fit: contain;
     grid-column: 1; /* coluna fixa à esquerda — sem isto o auto-placement podia adivinhar mal */
     grid-row: 1; /* logotipo fixo à linha 1 */
+}
 
-    /* O <div> do texto (título+empresa) é sempre o irmão seguinte ao logótipo */
-    /* coluna do texto, na linha de cima à direita do logótipo*/
-    & + div {grid-column: 2; grid-row: 1; }
+/* O hgroup (título + empresa/datas) fica sempre na coluna 2, linha 1, ao lado do logótipo.*/
+hgroup {grid-column: 2; grid-row: 1;
+    & h3 {font-size: 15px; font-weight: 600; margin: 0;}
+    & p { font-size: 12.5px; margin-top: 2px;}
 }
 
 /* Estilização dos titulos (funcao exercida o emprego/lado B/ e no ensino)*/
-.entrada-titulo {font-size: 15px; font-weight: 600; margin: 0;}
-.entrada-empresa-datas { font-size: 12.5px; margin-top: 2px;}
 .entrada-fonte {color: #2b6ca3;font-weight: 500;}
 .entrada-data {color: #9ca3af;font-weight: 500;}
 .entrada-resumo {
@@ -224,46 +205,37 @@ summary{
     text-align: justify;
     font-weight: 600;
     padding-right: 20px;
-    grid-column: 1 / -1; /* abrange as 2 colunas — ignora a coluna do logótipo, usa a largura toda */
-    grid-row: 2; /* fixa o resumo na linha 2, para não deixar o auto-placement empurrá-lo para uma linha 3 */
-    padding-left: 66px; /* 56px do logótipo + 10px do gap, para alinhar com o título nos ecrãs largos */
-
-    /* Em ecrãs estreitos, tira esse padding — o resumo passa a começar
-       à esquerda de tudo (incluindo por baixo do logótipo), como o próprio logótipo. */
-    @media (max-width: 600px) {
-        padding-left: 0;
-    }
+    grid-column: 1 / -1;                         /* abrange as 2 colunas — ignora a coluna do logótipo, usa a largura toda */
+    grid-row: 2;                                 /* fixa o resumo na linha 2, para não deixar o auto-placement empurrá-lo para uma linha 3 */
+    padding-left: 66px;                          /* 56px do logótipo + 10px do gap, para alinhar com o título nos ecrãs largos */
+    @media (max-width: 600px) {padding-left: 0;} /* Em ecrãs estreitos, retira o paddign à esquerda, começando à esquerda de tudo*/
 }
 .entrada-detalhes {
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
     list-style: disc; /* adiciona o marcador a cada linha li */
     margin: 0;
     padding: 0 28px 22px 95px;
-    /* Sincronizado com o breakpoint do .entrada-resumo (600px) — os dois têm
-       de mudar ao mesmo tempo, senão ficam desalinhados um do outro numa zona intermédia. */
-    @media (max-width: 600px) {padding: 0 28px 22px 10px;}
-    display: flex;
-    flex-direction: column;
     gap: 6px;
-    text-align: justify;
+    @media (max-width: 600px) {padding: 0 15px 22px 10px;}
 
     li {
         font-size: 13px;
         color: #4b5563;
         line-height: 1.5;
         &::marker {color: #2b6ca3;} 
-        /* antes de existir o ::marker, a bolinha herdava sempre a mesma cor do texto do <li>
-         — não havia forma de a cor da bolinha ser diferente da cor do texto. O ::marker foi 
-         criado exatamente para dar controlo sobre a bolinha independentemente do texto ao lado. */
+        /* antes de existir o ::marker, a bolinha herdava sempre a mesma cor do texto do <li>— não havia forma de a cor da bolinha ser diferente 
+        da cor do texto. O ::marker foi criado exatamente para dar controlo sobre a bolinha independentemente do texto ao lado. */
     }
 }
 
 /* --------|CERTIFICAÇÕES| ---------*/
 .grid-certificacoes {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);                      /*divissao da template comulns e duas coluans de fracoes iguais*/
     gap: 16px;
-    /*permite mudar a estrutura da grid quando reduzo as dimensões da janela*/
-    @media (max-width: 900px) {grid-template-columns: 1fr;}
+    @media (max-width: 900px) {grid-template-columns: 1fr;}     /*permite mudar a estrutura da grid quando reduzo as dimensões da janela*/
 }
 
 /* --------|COMPETÊNCIAS| ---------*/
@@ -271,15 +243,8 @@ summary{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
-    padding: 0 10px 10px; /* respiro nos lados e no fundo, entre os cartões e as bordas da secção */
-    /* 2 colunas a partir dos 900px, incluindo mobile — nunca cai para 1 coluna */
-    @media (max-width: 900px) {grid-template-columns: repeat(2, 1fr);}
-}
-
-/* Animação de "pulsação" — um anel a expandir e desvanecer, para chamar a atenção para os cartões */
-@keyframes pulso-competencia {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(43, 108, 163, 0.35); }
-    50% { box-shadow: 0 0 0 8px rgba(43, 108, 163, 0); }
+    padding: 0 10px 10px 10px; /* respiro nos lados e no fundo, entre os cartões e as bordas da secção */
+    @media (max-width: 900px) {grid-template-columns: repeat(2, 1fr);}     /* 2 colunas a partir dos 900px, incluindo mobile — nunca cai para 1 coluna */
 }
 
 /* Define a estrutura/esqueleto de cada competência (agora é um <div> simples, não um <details>) */
@@ -289,7 +254,7 @@ summary{
     border-radius: 12px;
     border: 1px solid #E5E7EB;
     background: #ffffff;
-    overflow: hidden;
+    overflow: hidden;    /* corta o que sair fora dos cantos arredondado */
     animation: pulso-competencia 2.4s ease-in-out infinite;
 
     /* Desfasamento entre cartões, para parecer uma onda a percorrer a grelha em vez de todos a pulsar ao mesmo tempo */
@@ -301,21 +266,29 @@ summary{
     &:nth-child(7) {animation-delay: 1.2s;}
     &:nth-child(8) {animation-delay: 1.4s;}
 
-    /* Já sabes que é interativo — para a pulsação enquanto interages com o cartão */
+    /* Pára a pulsação enquanto se interage com o cartão */
     &:hover, &:has(.competencia-toggle[open]) { animation: none; }
 
-    /* Respeita quem prefere menos animações no ecrã */
-    @media (prefers-reduced-motion: reduce) { animation: none; }
+    /* Rato de verdade: mostra ao passar por cima, sem precisar de clicar */
+    @media (hover: hover) and (pointer: fine) {
+        &:hover .competencia-frente { opacity: 0; }
+        &:hover .competencia-verso { opacity: 1; }
+    }
 }
 
 /* O <details> aqui dentro serve só de "botão" de clique/toque — não guarda nenhum conteúdo escondido,
    por isso nunca sofre do bloqueio interno que os browsers aplicam a <details> nunca abertos */
 .competencia-toggle {
-    position: absolute;
-    inset: 0;
-    border: none;
-    border-radius: 0;
-    background: transparent;
+    position: absolute; inset: 0;   /* estica o details para ocupar o cartão todo */
+    border: none;                   /* anula a regra do details */
+    border-radius: 0;               /* anula a regra do details */
+    background: transparent;        /* anula a regra do details */
+
+    /* Ecrã tátil: usa o toggle nativo do <details> — toca para abrir, toca outra vez para fechar.*/
+    @media (hover: none) {
+        &[open] .competencia-frente { opacity: 0; }
+        &[open] ~ .competencia-verso { opacity: 1; }
+    }
 }
 
 /* Features partilhadas por ambas as faces */
@@ -335,17 +308,13 @@ summary{
 
 /* Estilização na face da frente*/
 .competencia-frente{
-    list-style: none;                      /* tira a setinha do <summary> — Firefox */
+    list-style: none;                            /* tira a setinha do <summary> — Firefox */
     img { width: 26px; height: 26px };
-    p {
-        font-size: 14px;
-        font-weight: 600;
-        color: #1f2937;
-    }
+    p {font-size: 14px; font-weight: 600; color: #1f2937; }
+    &::-webkit-details-marker { display: none; } /* tira a setinha do <summary> em chrome/Safari/edge*/
 }
-.competencia-frente::-webkit-details-marker { display: none; } /* tira a setinha do <summary>*/
 
-/* Estilização na face de trás — agora é irmã do <details>, não filha, por isso é sempre um elemento normal */
+/*Estilização na face de trás*/
 .competencia-verso{
     opacity: 0;
     background: #DCEBF7;
@@ -364,19 +333,6 @@ summary{
     };
 }
 
-/* Rato de verdade: mostra ao passar por cima, sem precisar de clicar */
-@media (hover: hover) and (pointer: fine) {
-    .competencia:hover .competencia-frente { opacity: 0; }
-    .competencia:hover .competencia-verso { opacity: 1; }
-}
-
-/* Ecrã tátil (sem hover fiável): usa o toggle nativo do <details> — toca para abrir, toca outra vez para fechar.
-   ~ é o seletor de "irmão geral": aplica-se à .competencia-verso que vem a seguir ao .competencia-toggle aberto */
-@media (hover: none) {
-    .competencia-toggle[open] .competencia-frente { opacity: 0; }
-    .competencia-toggle[open] ~ .competencia-verso { opacity: 1; }
-}
-
 /* ================================ */
 /* ============ FOOTER ============ */
 /* ================================ */
@@ -388,16 +344,10 @@ footer {
     align-items: center;
     background-color: #F7F8FA;
     border-top: 1px solid #E5E7EB;
-    gap: 30px;
-    padding: 36px 20px;
+    gap: 10px;
+    padding: 20px 20px;
     font-size: 12px;
-    @media (max-width: 600px) {flex-direction: column;}
-
-    /* Footer mais compacto quando o ecrã é estreito E baixo — é informação secundária */
-    @media (max-width: 600px) and (max-height: 750px) {
-        padding: 8px 16px;
-        gap: 6px;
-    }
+    @media (max-width: 600px) {flex-direction: column;padding: 8px 10px; gap: 6px;}
 }
 
 /* --------|CONTACTOS| ---------*/
@@ -408,7 +358,7 @@ footer {
     gap: 16px;
     flex-wrap: wrap;
     font-style: normal;
-    @media (max-width: 600px) and (max-height: 750px) {gap: 8px;}
+    @media (max-width: 600px) {gap: 8px;}
 }
 
 .item-contacto {
@@ -437,10 +387,5 @@ footer {
     text-decoration: none; /* Retira o sublinhado */
     transition: transform 0.15s ease, box-shadow 0.15s ease;
     &:hover { transform: translateY(-2px);box-shadow: 0 4px 8px rgba(0,0,0,0.1);}
-
-    /* Botão mais pequeno no footer compacto */
-    @media (max-width: 600px) and (max-height: 750px) {
-        padding: 5px 10px;
-        font-size: 11px;
-    }
+    @media (max-width: 600px) {padding: 5px 10px; font-size: 11px;} /* Botão mais pequeno no footer compacto */
 }
