@@ -6,6 +6,10 @@ Página pessoal / currículo interativo, desenvolvida como projeto do Módulo 1 
 
 https://carlosgon-dev.github.io/projeto-curriculo-carlos/
 
+## Planeamento
+
+Esboço do layout feito no Google Stitch, antes de codar: https://stitch.withgoogle.com/projects/9627602077324099028
+
 ## Tecnologias
 
 - HTML5 semântico (`<header>`, `<main>`, `<footer>`, `<details>`/`<summary>`, `<address>`, `<nav>`, `<hgroup>`)
